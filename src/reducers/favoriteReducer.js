@@ -3,7 +3,7 @@ import {
   DELETE_FAVORITE,
   TOGGLE_FAVORITES,
 } from "../actions/favoriteActions";
-import movies from "../data";
+
 const initialState = {
   favorites: [],
   displayFavorites: false,
@@ -20,9 +20,7 @@ const favoriteReducer = (state = initialState, action) => {
     case DELETE_FAVORITE:
       return {
         ...state,
-        favorites: state.favorites.filter(
-          (item, index) => action.payload !== item[index]
-        ),
+        favorites: state.favorites.filter((item) => !item),
       };
     case TOGGLE_FAVORITES:
       return {

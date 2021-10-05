@@ -10,7 +10,9 @@ const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case DELETE_MOVIE:
       return {
-        movies: state.movies.filter((item) => action.payload !== item.id),
+        movies: state.movies.filter(
+          (item, index, favorites) => favorites[action.payload] !== item[index]
+        ),
       };
     case ADD_MOVIE:
       return {
