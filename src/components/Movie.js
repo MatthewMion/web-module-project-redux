@@ -13,7 +13,6 @@ const Movie = (props) => {
 
   const handleAddFavorite = () => {
     props.addFavorite(movie);
-    console.log(props.favorites);
   };
   const handleDelete = () => {
     props.deleteMovie(movie.id);

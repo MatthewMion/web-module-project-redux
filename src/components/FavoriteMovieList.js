@@ -6,8 +6,8 @@ import { deleteFavorite } from "../actions/favoriteActions";
 
 const FavoriteMovieList = (props) => {
   const handleFavoriteDelete = (item, index) => {
-    console.log(props.favorites);
     props.deleteFavorite(item[index]);
+    console.log(props.favorites);
   };
   return (
     <div className="col-xs savedContainer">
