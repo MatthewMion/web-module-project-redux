@@ -1,14 +1,18 @@
 import React from "react";
+import { useParams } from "react-router";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { deleteFavorite } from "../actions/favoriteActions";
 
 const FavoriteMovieList = (props) => {
-  const favorites = [];
-
+  const handleFavoriteDelete = (item, index) => {
+    console.log(props.favorites);
+    props.deleteFavorite(item[index]);
+  };
   return (
     <div className="col-xs savedContainer">
       <h5>Favorite Movies</h5>
-      {favorites.map((movie) => {
+      {props.favorites.map((movie) => {
         return (
           <div key={movie.id}>
             <Link
@@ -17,7 +21,9 @@ const FavoriteMovieList = (props) => {
             >
               {movie.title}
               <span>
-                <span class="material-icons">remove_circle</span>
+                <span onClick={handleFavoriteDelete} class="material-icons">
+                  remove_circle
+                </span>
               </span>
             </Link>
           </div>
@@ -29,8 +35,9 @@ const FavoriteMovieList = (props) => {
 
 const mapStateToProps = (state) => {
   return {
+    movies: state.movieState.movies,
     favorites: state.favoriteState.favorites,
   };
 };
 
-export default connect(null)(FavoriteMovieList);
+export default connect(mapStateToProps, { deleteFavorite })(FavoriteMovieList);
